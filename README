@@ -1,0 +1,21 @@
+InflectorLiterals
+=================
+
+When you call String#humanize, it calls capitalize on the result. This means that something like "ip_address".humanize returns "Ip address" instead of "IP address".
+
+I added a method to ActiveSupport::Inflector::Inflections called literal, that lets you specify exactly what humans expect to read for a field name.
+
+Example
+=======
+
+in inflections.rb:
+
+ActiveSupport::Inflector.inflections do |inflect|
+    inflect.literal "po_number", "PO number"
+end
+
+Thenceforth:
+
+"po_number".humanize ==> "PO number"
+
+Copyright (c) 2010 Ross Andrews, released under the MIT license
